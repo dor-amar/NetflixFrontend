@@ -22,8 +22,6 @@ jobs:
           echo "$PRIVATE_KEY" > dor.pem
           chmod 400 dor.pem
 
-          ssh-keyscan -H $EC2_PUBLIC_IP >> ~/.ssh/known_hosts
-
           # Copy the files from the current wrok dir into the EC2 instance, under `~/app`.
           scp -o StrictHostKeyChecking=no -i dor.pem -r . ubuntu@$EC2_PUBLIC_IP:~/app
           
