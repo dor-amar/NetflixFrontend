@@ -35,4 +35,4 @@ jobs:
           chmod 400 dor.pem
           scp -o StrictHostKeyChecking=no -i dor.pem deploy.sh ubuntu@$EC2_PUBLIC_IP:~/app
           ssh -i dor.pem ubuntu@$EC2_PUBLIC_IP "bash ~/app/deploy.sh"
-          
+    
