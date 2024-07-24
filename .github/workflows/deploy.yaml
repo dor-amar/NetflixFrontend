@@ -18,12 +18,11 @@ jobs:
         uses: actions/checkout@v2
            
       - name: SSH to EC2 instance
-        run: |
-          ls
-          echo "$PRIVATE_KEY" > dor.pem && chmod 600 dor.pem
-          ls
+        run: | 
+          echo "$PRIVATE_KEY" > mykey.pem
+          chmod 400 mykey.pem
           # Copy the files from the current wrok dir into the EC2 instance, under `~/app`.
-          scp -o StrictHostKeyChecking=no -i dor.pem -r . ubuntu@$EC2_PUBLIC_IP:~/app
+          scp -o StrictHostKeyChecking=no -i mykey.pem -r . ubuntu@$EC2_PUBLIC_IP:~/app
           
 
           # Connect to your EC2 instance and execute the `deploy.sh` script (this script is part of the repo files). 
