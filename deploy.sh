@@ -4,10 +4,10 @@
 CONTAINER_NAME="netflix-frontend"
 IMAGE_NAME="doramar97/netflix-frontend:latest"
 
+docker pull $IMAGE_NAME
+
 docker stop $CONTAINER_NAME || true
 docker rm $CONTAINER_NAME || true
-
-docker pull $IMAGE_NAME
 
 # Run the new container
 docker run \
