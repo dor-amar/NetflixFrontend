@@ -8,6 +8,8 @@ on:
 env:
   EC2_PUBLIC_IP: 3.64.252.72  
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  
+  DOCKERHUB_USERNAM: doramar97
+
 
 jobs:
   Deploy:
