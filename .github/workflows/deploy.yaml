@@ -20,7 +20,7 @@ jobs:
 
       - name: SSH to EC2 instance
         run: | 
-          echo "$PRIVATE_KEY" > dor.pem
+          echo "$SSH_PRIVATE_KEY" > dor.pem
           cat dor.pem
           chmod 400 dor.pem
 
