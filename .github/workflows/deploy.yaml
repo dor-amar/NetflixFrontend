@@ -16,15 +16,24 @@ jobs:
     steps:
       - name: Checkout the app code
         uses: actions/checkout@v2
-           
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+      - name: Build and push Docker image to Dockerhub
+        run: | 
+          docker build -t netflix-frontend . 
+          
       - name: SSH to EC2 instance
         run: | 
           echo "$SSH_PRIVATE_KEY" > dor.pem
           chmod 400 dor.pem
 
           # Copy the files from the current wrok dir into the EC2 instance, under `~/app`.
-          scp -o StrictHostKeyChecking=no -i dor.pem -r /* ubuntu@$EC2_PUBLIC_IP:~/app
+          #scp -o StrictHostKeyChecking=no -i dor.pem -r /* ubuntu@$EC2_PUBLIC_IP:~/app
           
           # Connect to your EC2 instance and execute the `deploy.sh` script (this script is part of the repo files). 
           # You need to implement the `deploy.sh` script yourself.
