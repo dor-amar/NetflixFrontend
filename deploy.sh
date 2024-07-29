@@ -17,3 +17,4 @@ docker run \
   --network netflix \
   doramar97/netflix-frontend:latest
   
+  
